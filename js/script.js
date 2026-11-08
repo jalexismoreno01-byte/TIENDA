@@ -217,7 +217,7 @@ function pintarPlatos(){
   );
 
   gridPlatos.innerHTML = lista.map((p, i) => `
-    <article class="plato" style="animation-delay:${Math.min(i * 45, 400)}ms">
+    <article class="plato visible" style="animation-delay:${Math.min(i * 45, 400)}ms">
       <div class="plato-media">
         <img src="${p.img}" alt="${p.nombre} — ${p.desc}" loading="lazy" width="700" height="480">
         <div class="etiquetas">
