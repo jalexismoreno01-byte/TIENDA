@@ -605,3 +605,149 @@ $$('.contador').forEach(el => observador.observe(el));
    16. DETALLE FINAL: AÑO ACTUAL
    ============================================================ */
 $('#anio').textContent = new Date().getFullYear();
+
+/* ============================================================
+   17. MÚSICA DE FONDO — Melodía generada con Web Audio API.
+   No usa archivos externos (sin copyright, funciona sin servidor
+   y sin conexión). Solo arranca con clic del usuario, según las
+   políticas de autoplay de los navegadores.
+   ============================================================ */
+(function musicaDeFondo(){
+  const btn    = $('#btnMusica');
+  const slider = $('#volumenMusica');
+  if (!btn) return;
+
+  /* Progresión armónica en La menor (notación MIDI):
+     La menor → Fa mayor → Do mayor → Sol mayor */
+  const ACORDES   = [[57,60,64],[53,57,60],[48,52,55],[55,59,62]];
+  const ARPEGIO   = [0,1,2,1,0,2,1,2];          // patrón de campanillas
+  const DUR_ACORDE = 2.4;                        // una compás (segundos)
+  const NOTA = m => 440 * Math.pow(2, (m - 69) / 12);  // MIDI → Hz
+
+  let ctx = null, master = null, temporizador = null;
+  let sonando = false, indice = 0, volumen = 50;
+
+  /* Volumen recordado entre visitas */
+  try{
+    const v = localStorage.getItem('musicaVolumen');
+    if (v !== null) volumen = Math.min(100, Math.max(0, parseInt(v, 10) || 0));
+  }catch(e){}
+  if (slider) slider.value = volumen;
+
+  /* Curva suave: 0 → 0.5 de ganancia máxima (para no saturar) */
+  const ganancia = () => Math.pow(volumen / 100, 2) * 0.5;
+
+  function crearContexto(){
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) { btn.disabled = true; btn.title = 'Música no soportada en este navegador'; return false; }
+    ctx = new AC();
+    master = ctx.createGain();
+    master.gain.value = ganancia();
+    const comp = ctx.createDynamicsCompressor();   // evita saturación
+    comp.threshold.value = -18;
+    comp.ratio.value = 6;
+    master.connect(comp);
+    comp.connect(ctx.destination);
+    return true;
+  }
+
+  /* Nota individual con envolvente suave (ataque y caída) */
+  function nota(freq, inicio, dur, tipo, vol, corte){
+    const osc = ctx.createOscillator();
+    const g   = ctx.createGain();
+    const f   = ctx.createBiquadFilter();
+    f.type = 'lowpass';
+    f.frequency.value = corte || 4000;
+    osc.type = tipo;
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, inicio);
+    g.gain.exponentialRampToValueAtTime(Math.max(vol, 0.0002), inicio + Math.min(0.12, dur * 0.3));
+    g.gain.exponentialRampToValueAtTime(0.0001, inicio + dur);
+    osc.connect(f); f.connect(g); g.connect(master);
+    osc.start(inicio);
+    osc.stop(inicio + dur + 0.05);
+  }
+
+  /* Compás completo: pad + bajo + arpegio + nota melódica */
+  function pintarAcorde(){
+    const t0 = ctx.currentTime + 0.06;
+    const acorde = ACORDES[indice];
+
+    /* Pad sostenido (acordes) */
+    acorde.forEach(m => nota(NOTA(m), t0, DUR_ACORDE + 0.4, 'triangle', 0.075, 1100));
+
+    /* Bajo grave en los tiempos 1 y 3 */
+    nota(NOTA(acorde[0] - 12), t0,       1.1, 'sine',   0.16, 800);
+    nota(NOTA(acorde[0] - 12), t0 + 1.2, 1.0, 'sine',   0.12, 800);
+
+    /* Arpegio de campanillas en corcheas */
+    const paso = DUR_ACORDE / ARPEGIO.length;
+    ARPEGIO.forEach((n, i) => {
+      nota(NOTA(acorde[n] + 12), t0 + i * paso, paso * 1.6, 'sine', 0.07, 6000);
+    });
+
+    /* Destello melódico (tercera del acorde, octava arriba) */
+    nota(NOTA(acorde[2] + 12), t0 + 0.6, 1.4, 'triangle', 0.05, 5000);
+  }
+
+  function programar(){
+    if (!sonando) return;
+    pintarAcorde();
+    indice = (indice + 1) % ACORDES.length;
+    temporizador = setTimeout(programar, DUR_ACORDE * 1000);
+  }
+
+  function reproducir(){
+    if (!ctx && !crearContexto()) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    /* restituir volumen por si venía de una pausa reciente */
+    const t = ctx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), t);
+    master.gain.linearRampToValueAtTime(ganancia(), t + 0.3);
+
+    sonando = true;
+    indice = 0;
+    programar();
+    btn.setAttribute('aria-pressed', 'true');
+    btn.setAttribute('aria-label', 'Pausar música de fondo');
+    btn.title = 'Pausar música';
+  }
+
+  function pausar(){
+    sonando = false;
+    if (temporizador) { clearTimeout(temporizador); temporizador = null; }
+    if (master && ctx){
+      const t = ctx.currentTime;
+      master.gain.cancelScheduledValues(t);
+      master.gain.setValueAtTime(Math.max(master.gain.value, 0.0001), t);
+      master.gain.linearRampToValueAtTime(0.0001, t + 0.45);   // fade-out
+      setTimeout(() => {
+        if (!sonando && master && ctx) master.gain.setValueAtTime(ganancia(), ctx.currentTime);
+      }, 600);
+    }
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', 'Reproducir música de fondo');
+    btn.title = 'Música de fondo';
+  }
+
+  btn.addEventListener('click', () => sonando ? pausar() : reproducir());
+
+  if (slider) slider.addEventListener('input', () => {
+    volumen = parseInt(slider.value, 10) || 0;
+    if (master && ctx && sonando) master.gain.setTargetAtTime(ganancia(), ctx.currentTime, 0.05);
+    try{ localStorage.setItem('musicaVolumen', String(volumen)); }catch(e){}
+  });
+
+  /* Al ocultar la pestaña se suspende el audio y la programación
+     de notas; al volver, la música continúa desde el inicio del ciclo. */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden){
+      if (sonando && temporizador){ clearTimeout(temporizador); temporizador = null; }
+      if (sonando && ctx && ctx.state === 'running') ctx.suspend();
+    } else if (sonando && ctx){
+      if (ctx.state === 'suspended') ctx.resume();
+      if (!temporizador){ indice = 0; programar(); }
+    }
+  });
+})();

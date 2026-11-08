@@ -12,31 +12,22 @@ Página única, sin frameworks ni dependencias: **HTML + CSS + JavaScript puros*
 ```
 ACTIVIDAD 2 RESTAURANTE/
 │
-├── la-gran-roma.html        ← Versión todo-en-uno (HTML + CSS + JS en un solo archivo)
-├── README.md                ← Este archivo
-│
-└── la-gran-roma-separado/   ← Versión organizada por carpetas
+└── la-gran-roma-separado/
     ├── index.html           ← Solo HTML (24 KB)
+    ├── README.md            ← Este archivo
     ├── css/
-    │   └── styles.css       ← Solo estilos (30 KB · 537 líneas)
+    │   └── styles.css       ← Solo estilos (30 KB)
     └── js/
-        └── script.js        ← Solo JavaScript (40 KB · 607 líneas)
+        └── script.js        ← Solo JavaScript (40 KB)
 ```
 
-### ¿Cuál versión usar?
-
-| Versión | Ideal para |
-|---|---|
-| `la-gran-roma.html` | Entregar como **un solo archivo** o subirlo rápido |
-| `la-gran-roma-separado/` | **Mantener y editar** el proyecto a largo plazo (CSS y JS independientes) |
-
-> ⚠️ En la versión separada, los 3 archivos deben viajar **juntos** en sus carpetas: las rutas `css/styles.css` y `js/script.js` son relativas al `index.html`.
+> ⚠️ Los archivos deben viajar **juntos** respetando la estructura: las rutas `css/styles.css` y `js/script.js` son relativas al `index.html`. Sube o copia la carpeta completa `la-gran-roma-separado/`.
 
 ---
 
 ## 🚀 Cómo abrirlo
 
-1. **Doble clic** sobre `la-gran-roma.html` (o `index.html` en la carpeta separada).
+1. **Doble clic** sobre `index.html`.
 2. Se abre directamente en el navegador — no requiere servidor, instalación ni conexión previa.
 3. *Recomendado:* Chrome, Edge, Firefox o Safari actualizados.
 
@@ -67,6 +58,7 @@ ACTIVIDAD 2 RESTAURANTE/
 - ✅ **Menú hamburguesa** en móvil con animación
 - ✅ Hero a pantalla completa con imagen animada, slogan y botones *"Ver Menú"* / *"Reservar Mesa"*
 - ✅ Botón **volver arriba** y **flotante de WhatsApp**
+- ✅ Botón **🎵 música de fondo** con control de volumen (aparece al pasar el cursor/foco)
 
 ### Carta / Menú
 - ✅ **50 platos** en 7 categorías: Entradas (7) · Pastas (8) · Pizzas (7) · Risottos (6) · Carnes y Pescados (7) · Postres (7) · Bebidas (8)
@@ -103,6 +95,33 @@ ACTIVIDAD 2 RESTAURANTE/
 - ✅ **Newsletter** con validación de correo
 - ✅ **Modo claro / oscuro** con preferencia guardada
 - ✅ Footer con enlaces rápidos, newsletter y derechos reservados
+
+---
+
+## 🎵 Música de fondo
+
+El sitio incluye una melodía ambiente de estilo italiano **generada en tiempo real con Web Audio API**, sin archivos MP3:
+
+| Característica | Detalle |
+|---|---|
+| **Sin archivos externos** | Se sintetiza con osciladores: nada que descargar, sin licencias ni copyright, funciona incluso abriendo el archivo con doble clic (`file://`) y sin conexión |
+| **Cómo se activa** | Con un clic en el botón flotante 🎵 (los navegadores no permiten sonido automático) |
+| **Qué suena** | Progresión La menor → Fa → Do → Sol, con pad suave, bajo, arpegio de campanillas y destellos melódicos (ciclo de ~10 s) |
+| **Control de volumen** | Panel con deslizador que aparece al pasar el cursor o al enfocar el botón con el teclado; el valor se guarda en `localStorage` |
+| **Botón de estado** | Late y cambia a *aria-pressed="true"* mientras suena; se apaga con otro clic (fade-out suave) |
+| **Eficiencia** | Al ocultar la pestaña se suspende el audio y la programación de notas; al volver, continúa |
+| **Comodpressor** | Un `DynamicsCompressor` evita saturaciones al subir el volumen |
+
+### Editar la música (en `js/script.js`, sección 17)
+
+```js
+const ACORDES    = [[57,60,64],[53,57,60],[48,52,55],[55,59,62]];  // progresión (notas MIDI)
+const ARPEGIO    = [0,1,2,1,0,2,1,2];                              // patrón del arpegio
+const DUR_ACORDE = 2.4;                                            // segundos por acorde
+const ganancia   = () => Math.pow(volumen / 100, 2) * 0.5;         // volumen máximo (0.5)
+```
+
+> 💡 Para usar un MP3 propio en lugar de la melodía generada, sustituye el bloque 17 por un `<audio loop>` con tu archivo y conserva el mismo botón `#btnMusica` para controlarlo.
 
 ---
 
@@ -164,7 +183,7 @@ body.oscuro{ ... }     /* colores del modo oscuro */
 
 - **JavaScript puro** (sin jQuery, React ni ningún framework)
 - **CSS moderno**: variables, Grid, Flexbox, `clamp()`, `aspect-ratio`, `min()`
-- **APIs del navegador**: `IntersectionObserver` (animaciones y contadores), `localStorage` (carrito y tema), `Intl.NumberFormat` (formato COP), Geolocalización no usada
+- **APIs del navegador**: `IntersectionObserver` (animaciones y contadores), `localStorage` (carrito, tema y volumen), `Web Audio API` (música de fondo), `Intl.NumberFormat` (formato COP)
 - **Imágenes**: Unsplash CDN con `loading="lazy"` para mejor rendimiento
 - **Tipografías**: Google Fonts (Playfair Display + Lato) con `preconnect`
 

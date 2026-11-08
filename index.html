@@ -498,6 +498,15 @@
      BOTONES FLOTANTES
 ============================================================ -->
 <div class="flotantes">
+  <!-- Música de fondo (Web Audio API) -->
+  <div class="flotante-musica" id="musicaCaja">
+    <div class="musica-panel">
+      <span aria-hidden="true">🔉</span>
+      <label class="sr-only" for="volumenMusica">Volumen de la música</label>
+      <input type="range" id="volumenMusica" min="0" max="100" value="50" step="1">
+    </div>
+    <button class="flotante" id="btnMusica" aria-pressed="false" aria-label="Reproducir música de fondo" title="Música de fondo">🎵</button>
+  </div>
   <button class="flotante" id="btnTop" aria-label="Volver arriba">↑</button>
   <a class="flotante" id="btnWhats" href="https://wa.me/573001234567?text=Hola%20La%20Gran%20Roma%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">💬</a>
 </div>
