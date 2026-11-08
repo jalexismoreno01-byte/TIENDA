@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Gran Roma — Restaurante Italiano | Sabor auténtico de Italia</title>
+<meta name="description" content="La Gran Roma: restaurante italiano con pastas artesanales, pizzas al horno de leña, risottos y postres tradicionales. Menú en línea, reservas y pedidos por WhatsApp.">
+<meta name="keywords" content="restaurante italiano, pasta, pizza, risotto, tiramisú, reservas, La Gran Roma">
+<meta name="author" content="La Gran Roma">
+<meta name="theme-color" content="#8B1A1A">
+<meta property="og:title" content="La Gran Roma — Sabor auténtico de Italia">
+<meta property="og:description" content="Pastas artesanales, pizzas al horno de leña y la tradición italiana en cada plato.">
+<meta property="og:type" content="restaurant">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%238B1A1A'/><text y='68' x='50' text-anchor='middle' font-size='52' fill='%23C9A24B'>GR</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "La Gran Roma",
+  "servesCuisine": "Italiana",
+  "priceRange": "$$$",
+  "telephone": "+57 300 123 4567",
+  "address": {"@type": "PostalAddress", "streetAddress": "Calle 12 # 34-56", "addressLocality": "Bogotá", "addressCountry": "CO"},
+  "openingHours": "Tu-Su 12:00-23:00"
+}
+</script>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<a class="skip" href="#menu">Saltar al menú</a>
+<!-- ============================================================
+     NAVEGACIÓN FIJA
+============================================================ -->
+<header class="nav" id="nav">
+  <div class="contenedor nav-interno">
+    <a href="#inicio" class="logo">
+      <span class="emblema" aria-hidden="true">GR</span>La Gran <span>Roma</span><span class="sr-only">, ir al inicio</span>
+    </a>
+    <nav class="menu-nav" id="menuNav" aria-label="Menú principal">
+      <ul>
+        <li><a href="#inicio" class="activo">Inicio</a></li>
+        <li><a href="#oferta">Oferta</a></li>
+        <li><a href="#menu">Carta</a></li>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#equipo">Chefs</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#reservas">Reservas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="nav-acciones">
+      <button class="icono-btn" id="btnTema" aria-label="Cambiar a modo oscuro" title="Modo claro/oscuro">🌙</button>
+      <button class="icono-btn" id="btnCarrito">
+        🛒<span class="badge" id="badgeCarrito">0</span>
+        <span class="sr-only">abrir carrito de pedido</span>
+      </button>
+      <button class="hamburguesa" id="hamburguesa" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     CONTENIDO PRINCIPAL (LANDMARK MAIN)
+============================================================ -->
+<main id="contenido">
+
+<!-- ============================================================
+     HERO PRINCIPAL
+============================================================ -->
+<section class="hero" id="inicio">
+  <div class="hero-fondo" role="img" aria-label="Interior elegante del restaurante La Gran Roma"></div>
+  <div class="hero-contenido">
+    <small>Ristorante · Trattoria · Pizzeria</small>
+    <h1>La Gran Roma</h1>
+    <p class="slogan">“Sabor auténtico de Italia”</p>
+    <p class="intro">Recetas heredadas de tres generaciones, ingredientes frescos y el aroma del horno de leña. Bienvenido a la mesa italiana más cálida de la ciudad.</p>
+    <div class="hero-botones">
+      <a href="#menu" class="btn btn-dorado">Ver Menú</a>
+      <a href="#reservas" class="btn btn-hueso">Reservar Mesa</a>
+    </div>
+  </div>
+  <div class="scroll-indicador" aria-hidden="true"></div>
+</section>
+
+<!-- ============================================================
+     OFERTA / PLATO DEL DÍA CON TEMPORIZADOR
+============================================================ -->
+<section class="oferta" id="oferta">
+  <div class="contenedor">
+    <div>
+      <span class="kicker">Plato del día</span>
+      <h2>Lasagna Bolognesa al estilo nonna</h2>
+      <p>Hojas de pasta fresca rellenas de ragú cocinado a fuego lento durante 6 horas, bechamel artesanal y mozzarella de búfala. <strong>Hoy con 25% de descuento</strong> <span class="precio-tachado">$38.900</span> <strong>$29.900 COP</strong></p>
+      <a href="#menu" class="btn btn-dorado">Pedir ahora</a>
+      <div class="temporizador" id="temporizador" aria-label="Tiempo restante de la oferta">
+        <div class="caja"><b id="tHoras">00</b><small>Horas</small></div>
+        <div class="caja"><b id="tMin">00</b><small>Minutos</small></div>
+        <div class="caja"><b id="tSeg">00</b><small>Segundos</small></div>
+      </div>
+    </div>
+    <img class="oferta-img" src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?auto=format&fit=crop&w=900&q=80" alt="Porción de lasaña bolognesa recién horneada" loading="lazy">
+  </div>
+</section>
+
+<!-- ============================================================
+     HISTORIA + CONTADORES ANIMADOS
+============================================================ -->
+<section id="historia">
+  <div class="contenedor historia-grid">
+    <div class="historia-imgs reveal">
+      <img class="principal" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=80" alt="Salón del restaurante La Gran Roma" loading="lazy">
+      <img class="secundaria" src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?auto=format&fit=crop&w=700&q=80" alt="Mesa servida con platos italianos" loading="lazy">
+    </div>
+    <div class="historia-texto reveal">
+      <span class="kicker" style="color:var(--rojo);letter-spacing:.3em;text-transform:uppercase;font-size:.78rem;font-weight:700">Nuestra historia</span>
+      <h2>Desde 1992, la tradición de Roma en tu mesa</h2>
+      <p>La Gran Roma nació del sueño de la familia Marchetti, emigrada desde el Lacio, con una maleta llena de recetas y un horno de leña hecho a mano. Lo que empezó como una pequeña trattoria de barrio se convirtió en el referente de la cocina italiana en Bogotá.</p>
+      <p>Cada pasta se elabora diariamente con harina 00, cada salsa madura a fuego lento y cada postre sigue la receta de la nonna Giulia. Nuestro compromiso es simple: que cada bocado te transporte a Italia.</p>
+      <p class="firma">— Familia Marchetti</p>
+      <div class="contadores">
+        <div class="contador"><b class="contador-num" data-objetivo="33">0</b><small>Años de experiencia</small></div>
+        <div class="contador"><b class="contador-num" data-objetivo="185000" data-sufijo="+">0</b><small>Platos servidos</small></div>
+        <div class="contador"><b class="contador-num" data-objetivo="42000" data-sufijo="+">0</b><small>Clientes felices</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CARTA / MENÚ COMPLETO
+============================================================ -->
+<section id="menu" style="background:var(--fondo-2)">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Nuestra carta</span>
+      <h2>Menú de la casa</h2>
+      <p>Platos preparados al momento con ingredientes importados y locales de primera calidad. Precios en pesos colombianos (COP).</p>
+      <div class="linea"></div>
+    </div>
+
+    <!-- Filtros por categoría -->
+    <div class="menu-controles">
+      <div class="categorias" id="categorias" role="tablist" aria-label="Categorías del menú"><!-- JS --></div>
+      <div class="buscador">
+        <span class="lupa" aria-hidden="true">🔍</span>
+        <input type="search" id="buscador" placeholder="Buscar plato..." aria-label="Buscar platos en la carta">
+      </div>
+    </div>
+    <p class="resultado-info" id="resultadoInfo" aria-live="polite"></p>
+
+    <!-- Tarjetas de platos (generadas con JavaScript) -->
+    <div class="grid-platos" id="gridPlatos"></div>
+    <div class="sin-resultados" id="sinResultados" hidden>
+      <b>¡Mamma mia!</b>No encontramos platos con esa búsqueda. Intenta con otro término.
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESERVAS
+============================================================ -->
+<section class="reservas" id="reservas">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Reserva tu mesa</span>
+      <h2>Vive la experiencia italiana</h2>
+      <p>Reserva con antelación y asegura tu mesa favorita. Confirmamos por teléfono en menos de 2 horas.</p>
+      <div class="linea"></div>
+    </div>
+    <div class="grid-res">
+      <div class="reservas-info reveal">
+        <div class="capa-info">
+          <h3>La Gran Roma</h3>
+          <p>📍 Calle 12 # 34-56, Chapinero — Bogotá</p>
+          <p>📞 +57 300 123 4567</p>
+          <p>🕒 Martes a domingo: 12:00 p.m. – 11:00 p.m.</p>
+          <p>👥 Grupos de hasta 20 personas · Eventos privados</p>
+        </div>
+      </div>
+
+      <div class="formulario" id="contenedorFormReserva">
+        <h3>Formulario de reserva</h3>
+        <form id="formReserva" novalidate>
+          <div class="campos">
+            <div class="campo">
+              <label for="rNombre">Nombre completo *</label>
+              <input type="text" id="rNombre" name="nombre" placeholder="Ej: Ana Gómez" autocomplete="name">
+              <span class="error" id="eNombre"></span>
+            </div>
+            <div class="campo">
+              <label for="rTel">Teléfono *</label>
+              <input type="tel" id="rTel" name="telefono" placeholder="Ej: 300 123 4567" autocomplete="tel">
+              <span class="error" id="eTel"></span>
+            </div>
+            <div class="campo">
+              <label for="rFecha">Fecha *</label>
+              <input type="date" id="rFecha" name="fecha">
+              <span class="error" id="eFecha"></span>
+            </div>
+            <div class="campo">
+              <label for="rHora">Hora *</label>
+              <select id="rHora" name="hora">
+                <option value="">Selecciona...</option>
+                <option>12:00</option><option>12:30</option><option>13:00</option>
+                <option>13:30</option><option>14:00</option><option>18:00</option>
+                <option>18:30</option><option>19:00</option><option>19:30</option>
+                <option>20:00</option><option>20:30</option><option>21:00</option>
+              </select>
+              <span class="error" id="eHora"></span>
+            </div>
+            <div class="campo ancho">
+              <label for="rPersonas">Número de personas *</label>
+              <select id="rPersonas" name="personas">
+                <option value="">Selecciona...</option>
+                <option>1</option><option>2</option><option>3</option><option>4</option>
+                <option>5</option><option>6</option><option>7</option><option>8</option>
+                <option>9</option><option>10</option><option>11</option><option>12</option>
+                <option>Más de 12 (evento)</option>
+              </select>
+              <span class="error" id="ePersonas"></span>
+            </div>
+            <div class="campo ancho">
+              <label for="rComentarios">Comentarios o peticiones especiales</label>
+              <textarea id="rComentarios" name="comentarios" rows="3" placeholder="Alergias, celebración, silla para niños..."></textarea>
+              <span class="error"></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-rojo">Confirmar Reserva</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============================================================
+     GALERÍA DE FOTOS + LIGHTBOX
+============================================================ -->
+<section id="galeria">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Galería</span>
+      <h2>Momentos La Gran Roma</h2>
+      <p>Haz clic en cualquier imagen para ampliarla y navega con las flechas del teclado.</p>
+      <div class="linea"></div>
+    </div>
+    <div class="galeria-grid" id="galeriaGrid"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CHEFS Y EQUIPO
+============================================================ -->
+<section class="equipo" id="equipo">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Nuestro equipo</span>
+      <h2>Los maestros de la cocina</h2>
+      <p>Artesanos del sabor que llevan la tradición italiana a cada plato.</p>
+      <div class="linea"></div>
+    </div>
+    <div class="grid-equipo">
+      <article class="chef reveal">
+        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=600&q=80" alt="Chef ejecutivo Marco Marchetti" loading="lazy">
+        <h3>Marco Marchetti</h3>
+        <span class="rol">Chef Ejecutivo</span>
+        <p>Nacido en Roma, formado en la Academia Italiana de Cocina. Su risotto alla Milanese es legendario.</p>
+        <div class="redes-chef">
+          <a href="#" aria-label="ig — Instagram de Marco">ig</a>
+          <a href="#" aria-label="fb — Facebook de Marco">fb</a>
+        </div>
+      </article>
+      <article class="chef reveal">
+        <img src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=600&q=80" alt="Chef pastelera Giulia Rossi" loading="lazy">
+        <h3>Giulia Rossi</h3>
+        <span class="rol">Chef Pastelera</span>
+        <p>Guardiana de la receta de la nonna. Sus cannoli sicilianos viajan hasta Palermo en sabor.</p>
+        <div class="redes-chef">
+          <a href="#" aria-label="ig — Instagram de Giulia">ig</a>
+          <a href="#" aria-label="tt — TikTok de Giulia">tt</a>
+        </div>
+      </article>
+      <article class="chef reveal">
+        <img src="https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?auto=format&fit=crop&w=600&q=80" alt="Pizzero Luca Bianchi" loading="lazy">
+        <h3>Luca Bianchi</h3>
+        <span class="rol">Pizzero Maestro</span>
+        <p>Maneja el horno de leña a 480°C. Su masa fermenta 48 horas para una pizza digestiva y crujiente.</p>
+        <div class="redes-chef">
+          <a href="#" aria-label="ig — Instagram de Luca">ig</a>
+          <a href="#" aria-label="x — X de Luca">x</a>
+        </div>
+      </article>
+      <article class="chef reveal">
+        <img src="https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?auto=format&fit=crop&w=600&q=80" alt="Sumiller Valentina Costa" loading="lazy">
+        <h3>Valentina Costa</h3>
+        <span class="rol">Sumiller</span>
+        <p>Escoge los vinos de nuestra bodega: Chianti, Barolo y Pinot Grigio para maridar cada plato.</p>
+        <div class="redes-chef">
+          <a href="#" aria-label="ig — Instagram de Valentina">ig</a>
+          <a href="#" aria-label="in — LinkedIn de Valentina">in</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIOS EN CARRUSEL AUTOMÁTICO
+============================================================ -->
+<section class="testimonios" id="testimonios">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Testimonios</span>
+      <h2>Lo que dicen nuestros comensales</h2>
+      <div class="linea"></div>
+    </div>
+    <div class="carrusel" id="carrusel" aria-live="polite"><!-- JS --></div>
+    <div class="puntos" id="puntosTest" aria-label="Seleccionar testimonio"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PREGUNTAS FRECUENTES
+============================================================ -->
+<section id="faq">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Preguntas frecuentes</span>
+      <h2>Todo lo que necesitas saber</h2>
+      <div class="linea"></div>
+    </div>
+    <div class="faq-lista" id="faqLista"><!-- JS --></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACTO, HORARIOS Y MAPA
+============================================================ -->
+<section id="contacto" style="background:var(--fondo-2)">
+  <div class="contenedor">
+    <div class="titulo-bloque">
+      <span class="kicker">Contacto y ubicación</span>
+      <h2>Visítanos</h2>
+      <p>Estamos en el corazón de Chapinero, a pasos del Parque de la 93.</p>
+      <div class="linea"></div>
+    </div>
+    <div class="contacto-grid">
+      <div class="datos-contacto reveal">
+        <div class="dato">
+          <span class="ico" aria-hidden="true">📍</span>
+          <div><h3>Dirección</h3><p>Calle 12 # 34-56, Chapinero, Bogotá, Colombia</p></div>
+        </div>
+        <div class="dato">
+          <span class="ico" aria-hidden="true">📞</span>
+          <div><h3>Teléfono</h3><p><a href="tel:+573001234567">+57 300 123 4567</a> · <a href="tel:+576015555555">+57 601 555 5555</a></p></div>
+        </div>
+        <div class="dato">
+          <span class="ico" aria-hidden="true">✉️</span>
+          <div><h3>Correo</h3><p><a href="mailto:hola@lagranroma.co">hola@lagranroma.co</a></p></div>
+        </div>
+        <div class="horario">
+          <h4 style="color:var(--rojo);margin-bottom:.6rem" class="serif">Horarios de atención</h4>
+          <ul>
+            <li><span>Lunes</span><b>Cerrado</b></li>
+            <li><span>Martes – Jueves</span><b>12:00 – 22:00</b></li>
+            <li><span>Viernes – Sábado</span><b>12:00 – 23:30</b></li>
+            <li><span>Domingo</span><b>12:00 – 21:00</b></li>
+          </ul>
+        </div>
+        <div class="redes-sociales">
+          <a href="#" aria-label="f — Facebook">f</a>
+          <a href="#" aria-label="ig — Instagram">ig</a>
+          <a href="#" aria-label="tt — TikTok">tt</a>
+          <a href="#" aria-label="x — X (Twitter)">x</a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="formulario" id="formContacto" novalidate style="margin-bottom:20px">
+          <h3>Escríbenos</h3>
+          <div class="campos">
+            <div class="campo ancho">
+              <label for="cNombre">Nombre *</label>
+              <input type="text" id="cNombre" placeholder="Tu nombre">
+              <span class="error" id="ecNombre"></span>
+            </div>
+            <div class="campo ancho">
+              <label for="cEmail">Correo electrónico *</label>
+              <input type="email" id="cEmail" placeholder="tucorreo@ejemplo.com">
+              <span class="error" id="ecEmail"></span>
+            </div>
+            <div class="campo ancho">
+              <label for="cMensaje">Mensaje *</label>
+              <textarea id="cMensaje" rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
+              <span class="error" id="ecMensaje"></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-rojo">Enviar mensaje</button>
+          <p class="msg-news" id="msgContacto" role="status"></p>
+        </form>
+        <iframe class="mapa" title="Mapa de ubicación de La Gran Roma" loading="lazy"
+          src="https://www.google.com/maps?q=Carrera%207%20%23%2012-45%20Bogota%20Colombia&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+</main>
+<footer>
+  <div class="contenedor footer-grid">
+    <div>
+      <a href="#inicio" class="logo" style="color:#e9c98a"><span class="emblema">GR</span>La Gran <span>Roma</span></a>
+      <p style="margin-top:.9rem">Sabor auténtico de Italia desde 1992. Pastas artesanales, pizzas al horno de leña y postres de la nonna.</p>
+      <div class="redes-sociales" style="margin-top:1rem">
+        <a href="#" aria-label="f — Facebook">f</a>
+        <a href="#" aria-label="ig — Instagram">ig</a>
+        <a href="#" aria-label="tt — TikTok">tt</a>
+        <a href="#" aria-label="x — X (Twitter)">x</a>
+      </div>
+    </div>
+    <div>
+      <h4>Enlaces rápidos</h4>
+      <ul>
+        <li><a href="#menu">Nuestra carta</a></li>
+        <li><a href="#reservas">Reservar mesa</a></li>
+        <li><a href="#oferta">Plato del día</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#equipo">Nuestros chefs</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li>Calle 12 # 34-56<br>Bogotá, Colombia</li>
+        <li><a href="tel:+573001234567">+57 300 123 4567</a></li>
+        <li><a href="mailto:hola@lagranroma.co">hola@lagranroma.co</a></li>
+        <li>Martes a domingo<br>12:00 – 23:00</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Newsletter</h4>
+      <p>Recibe ofertas, eventos especiales y recetas italianas cada semana.</p>
+      <form class="newsletter" id="formNews" novalidate>
+        <input type="email" id="emailNews" placeholder="Tu correo electrónico" aria-label="Correo para el newsletter" required>
+        <button type="submit">Unirme</button>
+      </form>
+      <p class="msg-news" id="msgNews" role="status"></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="contenedor">
+      © <span id="anio">2026</span> <span>La Gran Roma</span>. Todos los derechos reservados. · Hecho con ❤️ y albahaca fresca.
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     PANEL LATERAL DEL CARRITO DE PEDIDO
+============================================================ -->
+<div class="capa" id="capaCarrito" hidden></div>
+<aside class="carrito" id="carrito" aria-label="Tu pedido" aria-hidden="true">
+  <div class="carrito-cab">
+    <h2>🛒 Tu pedido</h2>
+    <button id="cerrarCarrito" aria-label="Cerrar carrito">✕</button>
+  </div>
+  <div class="carrito-cuerpo" id="carritoCuerpo"></div>
+  <div class="carrito-pie">
+    <div class="fila-tot"><span>Subtotal</span><span id="subtotal">$0</span></div>
+    <label class="opcion-propina">
+      <input type="checkbox" id="propina10"> Propina voluntaria (10%)
+    </label>
+    <div class="fila-tot"><span>Propina</span><span id="propina">$0</span></div>
+    <div class="fila-tot total"><span>Total</span><span id="total">$0</span></div>
+    <button class="btn btn-rojo" id="btnWhatsapp">📱 Enviar pedido por WhatsApp</button>
+    <button class="vaciar" id="btnVaciar">Vaciar carrito</button>
+  </div>
+</aside>
+
+<!-- ============================================================
+     LIGHTBOX DE LA GALERÍA
+============================================================ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada de la galería">
+  <button class="lb-btn lb-cerrar" id="lbCerrar" aria-label="Cerrar">✕</button>
+  <button class="lb-btn lb-anterior" id="lbAnterior" aria-label="Imagen anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button class="lb-btn lb-siguiente" id="lbSiguiente" aria-label="Imagen siguiente">›</button>
+  <div class="lb-pie" id="lbPie"></div>
+</div>
+
+<!-- ============================================================
+     BOTONES FLOTANTES
+============================================================ -->
+<div class="flotantes">
+  <button class="flotante" id="btnTop" aria-label="Volver arriba">↑</button>
+  <a class="flotante" id="btnWhats" href="https://wa.me/573001234567?text=Hola%20La%20Gran%20Roma%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">💬</a>
+</div>
+
+
+
+<script src="js/script.js" defer></script>
+</body>
+</html>
