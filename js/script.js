@@ -50,7 +50,10 @@ const PLATOS = [
   {id:30, cat:'risottos', nombre:'Risotto ai Funghi', desc:'Arroz carnaroli con setas silvestres, parmesano y aceite de trufa.', precio:43900, img:'https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&w=700&q=80', tags:['veg','chef']},
   {id:31, cat:'risottos', nombre:'Risotto alla Milanese', desc:'Arroz con azafrán, mantequilla y hueso de tuétano.', precio:44900, img:'https://images.unsplash.com/photo-1615937657715-bc7b4b7962c1?auto=format&fit=crop&w=700&q=80', tags:['chef']},
   {id:32, cat:'risottos', nombre:'Risotto al Nero di Seppia', desc:'Arroz negro con tinta de calamar, ajo, vino blanco y limón.', precio:46900, img:'https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?auto=format&fit=crop&w=700&q=80', tags:[]},
-  {id:33, cat:'risottos', nombre:'Risotto ai Frutti di Mare', desc:'Camarones, mejillones y calamar en caldo de mariscos.', precio:48900, img:'https://images.unsplash.com/photo-1560787313-5dff3307e257?auto=format&fit=crop&w=700&q=80', tags:['fav']},
+  /* Nota: la foto del plato 33 (Risotto ai Frutti di Mare) es
+     "Seafood risotto at Morris Jones" de ultrakml, licencia CC BY 2.0
+     https://www.flickr.com/photos/34948727@N00/8208329538  */
+  {id:33, cat:'risottos', nombre:'Risotto ai Frutti di Mare', desc:'Camarones, mejillones y calamar en caldo de mariscos.', precio:48900, img:'https://live.staticflickr.com/8202/8208329538_36014a0583_b.jpg', tags:['fav']},
   {id:34, cat:'risottos', nombre:'Risotto al Pomodoro Seco', desc:'Tomates secos, albahaca, mozzarella y pesto de la casa.', precio:39900, img:'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=700&q=80', tags:['veg']},
   {id:35, cat:'risottos', nombre:'Risotto Zucca e Gorgonzola', desc:'Calabaza asada, gorgonzola dolce y piñones tostados.', precio:41900, img:'https://images.unsplash.com/photo-1589187151053-5ec8818e661b?auto=format&fit=crop&w=700&q=80', tags:['veg']},
 

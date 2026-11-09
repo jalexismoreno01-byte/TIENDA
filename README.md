@@ -161,7 +161,7 @@ También aparece en el botón flotante `#btnWhats` y en los textos de contacto.
 - **Platos:** propiedad `img` de cada objeto en `PLATOS`.
 - **Galería:** arreglo `GALERIA`.
 - **Hero / oferta / reservas / historia:** rutas `url('...')` dentro de `styles.css` (buscar `hero-fondo`, `.oferta::before`, `.reservas-info`).
-- Las imágenes usan **Unsplash** (URLs directas). Si alguna falla, un respaldo automático muestra una imagen genérica en lugar de un ícono roto.
+- Las imágenes usan **Unsplash** (URLs directas), excepto la del *Risotto ai Frutti di Mare* (Flickr, ver crédito abajo). Si alguna falla, un respaldo automático muestra una imagen genérica en lugar de un ícono roto.
 
 ### Cambiar colores y tipografías
 
@@ -224,9 +224,11 @@ body.oscuro{ ... }     /* colores del modo oscuro */
 
 ## 🧪 Verificación realizada
 
-- **0 errores** de consola en ambas versiones
-- **70 imágenes** de Unsplash verificadas individualmente (todas cargan)
+- **0 errores** de consola
+- **70 imágenes** verificadas individualmente (69 de Unsplash + 1 de Flickr, todas cargan)
 - Funciones probadas: filtros, buscador, carrito, propina, WhatsApp, validación de reservas, lightbox, FAQ, carrusel, contadores, temporizador, modo oscuro y hamburguesa
+- **Música de fondo**: reproducción (14 osciladores por compás con las frecuencias exactas de cada acorde), cambio de acorde automático, pausa sin notas residuales, volumen persistido y panel accesible por teclado
+- **Imagen del Risotto ai Frutti di Mare** cambiada (la anterior no era un risotto) y verificada en navegador: carga 1024×768 sin errores
 - Sin desbordamiento horizontal en móvil
 
 ---
@@ -236,6 +238,11 @@ body.oscuro{ ... }     /* colores del modo oscuro */
 - Los datos de contacto son **de ejemplo** (teléfono `+57 300 123 4567`, dirección en Chapinero, Bogotá). Reemplázalos por los reales.
 - El formulario de reservas, contacto y newsletter **no envían a un servidor** (es una demo sin backend). Para activarlos, conéctalos a un servicio como Formspree, EmailJS o tu propia API.
 - Los platos, precios e imágenes se almacenan en arreglos de objetos para facilitar su edición.
+
+### 📷 Crédito de imagen
+
+- **Risotto ai Frutti di Mare** (plato 33): *"Seafood risotto at Morris Jones"* de **ultrakml**, licencia **[CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)** — [flickr.com/photos/34948727@N00/8208329538](https://www.flickr.com/photos/34948727@N00/8208329538). Si publicas el sitio, mantén esta atribución.
+- Las demás fotos provienen de **Unsplash** (uso libre, sin atribución obligatoria).
 
 ---
 
